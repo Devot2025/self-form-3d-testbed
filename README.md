@@ -1,6 +1,8 @@
 # self-form-3d-testbed
+
 A testbed for exploring self-forming and self-organizing 3D geometries using computational and topological approaches.
-# Self-Forming 3D Testbed
+
+---
 
 ## Overview
 
@@ -11,6 +13,15 @@ However, the core logic itself is likely correct and has not changed since the i
 
 The `.sc3` files are **created and tested in Blender**, and the same data is used directly in this project.  
 In Blender, the files behave as intended.
+
+---
+
+## Requirements
+
+The following are required **before building and running this project**:
+
+- **OpenGL**
+- **GLFW**
 
 ---
 

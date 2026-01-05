@@ -48,7 +48,6 @@ target_link_libraries(sc_engine
     glfw
     OpenGL::GL
     OpenGL::GLU
-    Freetype::Freetype
 )
 
 # ===============================
