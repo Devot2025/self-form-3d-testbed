@@ -42,7 +42,5 @@ Below is an example of rendering and playing back `a.sc3` using this code.
 ---
 
 ## Notes
-
-- This project is intended for **experimental and research purposes**
-- Visual quality (mesh detail and animation smoothness) is secondary to  
-  **correctly interpreting and executing the self-forming data**
+- This project is a small **experimental playground**
+- The visuals are rough, but the focus is on **making the self-forming data work**
