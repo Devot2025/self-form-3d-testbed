@@ -75,15 +75,16 @@ void dynamic_mesh_program(){
 }
 
 void static_mesh_program(){
-    vec4 worldPos = model * vec4(a_pos, 1.0);
+    vec4 worldPos = vec4(a_pos, 1.0);
 
     f_worldPos = worldPos;
-    f_normal   = normalize(mat3(transpose(inverse(model))) * t_normal);
+    f_normal   = normalize(t_normal);
 
     gl_Position = projection * view * worldPos;
 }
 void main() {
     if(static_check == 0)dynamic_mesh_program();
-    else static_mesh_program();
-    f_light_view = light_view * f_worldPos;
+    else
+    static_mesh_program();
+    //f_light_view = light_view * f_worldPos;
 }

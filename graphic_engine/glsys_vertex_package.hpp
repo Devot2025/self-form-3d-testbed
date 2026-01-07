@@ -27,6 +27,12 @@ class Basic_Gl_Vertex_Package{
     void set_up_vp_buffer_shader_attribute_memory(GLuint var_location_id, GLuint attribute_dimension, GLuint per_elements_dimension, GLuint offset_pos);
     template <typename Send_Ty = float, typename Attribute_Data = Send_Ty>
     void set_up_vp_buffer_shader_attribute_memory_int(GLuint var_location_id,GLuint attribute_dimension, GLuint per_elements_dimension, uintptr_t offset_pos);
+
+    template <typename Min_Type = float, GLuint Normalize_Check = GL_FALSE, typename Data_Types, typename Offset_Ty>
+    void set_up_vp_buffer_shader_attribute_memory_s(Offset_Ty Data_Types:: * d_offset, GLuint var_location_id, GLuint attribute_dimension, GLuint per_elements_dimension = 1);
+    template <typename Min_Type = float, typename Data_Types, typename Offset_Ty>
+    void set_up_vp_buffer_shader_attribute_memory_is(Offset_Ty Data_Types:: * d_offset, GLuint var_location_id, GLuint attribute_dimension, GLuint per_elements_dimension = 1);
+
     public:
     inline void start_normal_draw(GLuint a_vtn){
         start_vp();
@@ -42,6 +48,53 @@ class Basic_Gl_Vertex_Package{
     }
 };
 
+
+template <GLuint Vbo_Num, GLenum Object_Type>
+template <typename Min_Type, typename Data_Types, typename Offset_Ty>
+void Basic_Gl_Vertex_Package<Vbo_Num, Object_Type>::set_up_vp_buffer_shader_attribute_memory_is(Offset_Ty Data_Types:: * d_offset, GLuint var_location_id, GLuint attribute_dimension, GLuint per_elements_dimension){
+    
+    //size_t offset_pos = reinterpret_cast<size_t>(&(reinterpret_cast<Data_Types const volatile*>(0)->*d_offset));
+    
+    Data_Types tmp_data_types{};
+    auto tmp_data_ptr = &tmp_data_types;
+    auto offset_ptr = &(tmp_data_ptr->*(d_offset));
+    size_t result__ = reinterpret_cast<size_t>(offset_ptr) - reinterpret_cast<size_t>(tmp_data_ptr);
+    /**
+     * Data Types The Array standard
+     * 
+     * Array
+     * {
+     * a, a, a, b, b, b, c, c
+     * ....
+     * }
+    */
+   
+    glVertexAttribIPointer(var_location_id, attribute_dimension, fix_gl_type<Min_Type>(), sizeof(Data_Types) * per_elements_dimension, (void *)(result__));
+    glEnableVertexAttribArray(var_location_id);
+
+}
+template <GLuint Vbo_Num, GLenum Object_Type>
+template <typename Min_Type, GLuint Normalize_Check, typename Data_Types, typename Offset_Ty>
+void Basic_Gl_Vertex_Package<Vbo_Num, Object_Type>::set_up_vp_buffer_shader_attribute_memory_s(Offset_Ty Data_Types:: * d_offset, GLuint var_location_id, GLuint attribute_dimension, GLuint per_elements_dimension){
+    
+    //size_t offset_pos = reinterpret_cast<size_t>(&(reinterpret_cast<Data_Types const volatile*>(0)->*d_offset));
+    Data_Types tmp_data_types{};
+    auto tmp_data_ptr = &tmp_data_types;
+    auto offset_ptr = &(tmp_data_ptr->*(d_offset));
+    size_t result__ = reinterpret_cast<size_t>(offset_ptr) - reinterpret_cast<size_t>(tmp_data_ptr);
+    /**
+     * Data Types The Array standard
+     * 
+     * Array
+     * {
+     * a, a, a, b, b, b, c, c
+     * ....
+     * }
+    */
+    glVertexAttribPointer(var_location_id, attribute_dimension, fix_gl_type<Min_Type>(), Normalize_Check, sizeof(Data_Types) * per_elements_dimension, (void *)(result__));
+    glEnableVertexAttribArray(var_location_id);
+
+}
 template <GLuint Vbo_Num, GLenum Object_Type>
 template <typename Send_Ty, typename Attribute_Data>
 void Basic_Gl_Vertex_Package<Vbo_Num, Object_Type>::set_up_vp_buffer_shader_attribute_memory_int(GLuint var_location_id,GLuint attribute_dimension, GLuint per_elements_dimension, uintptr_t offset_pos){

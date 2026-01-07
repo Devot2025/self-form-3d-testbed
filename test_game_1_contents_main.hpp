@@ -15,31 +15,6 @@ typedef enum Main_Shader_Var_Id{
     E_Main_Shader_Shadow_Map,
     E_Main_Shader_Light_View,
 }Main_Shader_Var_Id;
-
-typedef enum Shadow_Shader_Var_Id{
-    E_Shadow_Shader_Model,
-    E_Shadow_Shader_Light_View,
-    E_Shadow_Shader_Static_Check,
-    E_Shadow_Shader_Skin_Bones
-}Shadow_Shader_Var_Id;
-
-typedef enum Texture_Shader_Var_Id{
-    E_Tex_Shader_Projection,
-    E_Tex_Shader_Model,
-    E_Tex_Shader_Obj_Color,
-    E_Tex_Shader_Obj_Pos,
-    E_Tex_Shader_Tex_Buff_Check,
-    E_Tex_Shader_Tex_Buff
-}Texture_Shader_Var_Id;
-
-typedef enum Sky_Shader_Var_Id{
-    E_Sky_Shader_Resolution,
-    E_Sky_Shader_Sky_Color_Top,
-    E_Sky_Shader_Sky_Color_Bottom,
-    E_Sky_Shader_Light_Dir,
-    E_Sky_Shader_Inv_Proj,
-    E_Sky_Shader_Inv_View,
-}Sky_Shader_Var_Id;
 class Test_Game_1_Main_Loop : public GL_Loop_Manager {
 public:
 
