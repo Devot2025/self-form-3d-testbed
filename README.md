@@ -33,6 +33,7 @@ Before building and running this project, ensure the following are installed:
 - The custom 3D format uses the extension **`.sc3`**
 - The example provided in this repository is **`a.sc3`**
 - The format is experimental and **its specification may change**
+- **Currently supports converting FBX files into the custom `.sc3` format**
 
 ---
 
