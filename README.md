@@ -25,6 +25,7 @@ Before building and running this project, ensure the following are installed:
 - **OpenGL**
 - **GLFW**
 - **GLAD**
+Libraries required to load `.sc3` files are included inside the `sc3_loader` directory.
 
 ---
 
